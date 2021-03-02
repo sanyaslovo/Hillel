@@ -8,7 +8,6 @@ class List extends Component {
            <>
                <h1>My Todo List</h1>
                <ul className="List">
-
                    { this.props.list.map((todo, key) => <Task key={key} todo={todo} />) }
                </ul>
            </>
