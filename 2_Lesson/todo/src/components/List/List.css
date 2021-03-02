@@ -1,0 +1,9 @@
+ul.List {
+    background: #ffffffa1;
+    border: 1px solid #ffffff2e;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0;
+    list-style-type: none;
+    box-shadow: 0 0 50px 8px rgb(10 10 10 / 28%), 0 3px 4px -2px rgb(10 10 10 / 25%);
+}

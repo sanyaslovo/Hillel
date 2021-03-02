@@ -1,0 +1,23 @@
+li {
+    border: 0px solid #989898cf;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 5px 0;
+    box-shadow: 0 0 4px 0px rgb(0 0 0 / 31%), 0 3px 4px -2px rgb(10 10 10 / 25%);
+    transition: 0.1s;
+}
+li:hover {
+    transition: 0.1s;
+    transform: scale(1.03);
+}
+.completed:hover{
+    transition: 0.1s;
+    transform: scale(1);
+}
+label{
+    cursor: pointer;
+}
+.completed {
+    background: green;
+    text-decoration: line-through;
+}
