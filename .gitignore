@@ -25,4 +25,4 @@ yarn-error.log*
 # custom
 
 /.idea
-.idea
+.ideanode_modules/
