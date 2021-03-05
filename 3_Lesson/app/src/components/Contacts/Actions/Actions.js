@@ -7,8 +7,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
+import AddIcon from "@material-ui/icons/Add";
 
-export default class Edit extends Component {
+export default class Actions extends Component {
     state = {
         isOpen: false,
         form: {
@@ -26,15 +27,28 @@ export default class Edit extends Component {
     };
     onFormSubmit = (e) => {
         e.preventDefault();
-        this.props.edit(this.state.form)
-        this.setState({ ...this.state.form, isOpen: false });
+            this.props.action(this.state.form)
+            this.setState({ ...this.state.form, isOpen: false });
     }
     render() {
         return (
             <>
-                <IconButton style={{padding: '5px' }} aria-label="Edit" color="primary" onClick={this.handleClickOpen}>
-                    <EditIcon />
-                </IconButton><Dialog open={this.state.isOpen} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                {this.props.type === 'add' ? (
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        startIcon={<AddIcon />}
+                        onClick={this.handleClickOpen}
+                    >
+                        Add
+                    </Button>
+                ) : (
+                    <IconButton style={{padding: '5px' }} aria-label="Edit" color="primary" onClick={this.handleClickOpen}>
+                        <EditIcon />
+                    </IconButton>
+                )}
+                <Dialog open={this.state.isOpen} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Add new contact to Phone book</DialogTitle>
                 <DialogContent>
                     <TextField
