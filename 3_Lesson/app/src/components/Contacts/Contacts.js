@@ -1,53 +1,35 @@
 import React, {Component} from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Add from "./Add/Add";
-import Delete from "./Delete/Delete";
-import Edit from "./Edit/Edit";
+import { LinearProgress, Container, Typography, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper } from '@material-ui/core';
+import RowContacts from "./RowContacts";
+import Actions from "./Actions/Actions";
+import { getContacts, deleteContact, contactAction } from "../../api/api";
 
 export default class Contacts extends Component {
     state = {
         contacts: [],
     }
     componentDidMount() {
-        fetch('https://5dd3d5ba8b5e080014dc4bfa.mockapi.io/contacts')
-            .then(res => res.json())
-            .then(contacts => this.setState({contacts}))
+        getContacts().then(contacts => this.setState({ contacts }));
     }
-    createContact = (newContacts) => {
-        fetch('https://5dd3d5ba8b5e080014dc4bfa.mockapi.io/contacts', {
-            method: 'POST',
-            body: JSON.stringify(newContacts),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }).catch((e) => console.log('Request error', e));
-        this.setState({contacts: [...this.state.contacts, newContacts]})
+    action = (contact) => {
+        if (contact.id === ''){
+            contactAction(contact, 'add').then(() => this.setState({contacts: [...this.state.contacts, contact]}));
+        } else {
+            contactAction(contact, 'edit').then(() => this.setState({ contacts: this.state.contacts.map(item => item.id === contact.id ? contact : item )}));
+        }
     }
-    editContact = (contact) => {
-        fetch('https://5dd3d5ba8b5e080014dc4bfa.mockapi.io/contacts/' + contact.id, {
-            method: 'PUT',
-            body: JSON.stringify(contact),
-            headers: {'Content-Type': 'application/json'}
-        }).catch((e) => console.log('Request error', e));
-        this.setState({contacts: this.state.contacts.map(item => item.id === contact.id ? contact : item )})
-    }
-    deleteContact = (id) => {
-        fetch('https://5dd3d5ba8b5e080014dc4bfa.mockapi.io/contacts/' + id, {method: 'DELETE'})
-            .catch((e) => console.log('Request error', e));
-        this.setState({contacts: this.state.contacts.filter(contact => contact.id !== id)})
+    delete = (id) => {
+        deleteContact(id);
+        this.setState({contacts: this.state.contacts.filter(contact => contact.id !== id)});
     };
     render() {
         return (
             <Container maxWidth="sm">
                 <Typography style={{marginTop: '18px'}} align="center" variant="h4" paragraph>Phone Book</Typography>
+                {this.state.contacts.length === 0 ? (
+                    <LinearProgress />
+                ) : null
+                }
                 <TableContainer component={Paper}>
                     <Table size="medium" aria-label="a dense table">
                         <TableHead>
@@ -59,22 +41,17 @@ export default class Contacts extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {this.state.contacts.map((contact) => (
-                                <TableRow key={contact.id}>
-                                    <TableCell component="th" scope="row">
-                                        {contact.name}
-                                    </TableCell>
-                                    <TableCell align="left">{contact.surname}</TableCell>
-                                    <TableCell align="left"><a href={`tel:${contact.phone}`}>{contact.phone}</a></TableCell>
-                                    <TableCell align="right" style={{padding: '5px' }}>
-                                        <Edit edit={this.editContact} contact={contact}/>
-                                        <Delete delete={this.deleteContact} id={contact.id}/>
-                                    </TableCell>
-                                </TableRow>
+
+                            {this.state.contacts.map(contact => (
+                                <RowContacts key={contact.id} contact={contact} action={this.action} delete={this.delete}/>
                             ))}
                             <TableRow>
                                 <TableCell>
-                                    <Add onAdd={this.createContact} />
+                                    <Actions
+                                        type="add"
+                                        contact={{id: '', name: '', surname: '', phone: ''}}
+                                        action={this.action}
+                                    />
                                 </TableCell>
                             </TableRow>
                         </TableBody>

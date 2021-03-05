@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import IconButton from '@material-ui/core/IconButton';
+import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from "@material-ui/icons/Add";
 
@@ -27,8 +22,8 @@ export default class Actions extends Component {
     };
     onFormSubmit = (e) => {
         e.preventDefault();
-            this.props.action(this.state.form)
-            this.setState({ ...this.state.form, isOpen: false });
+        this.props.action(this.state.form)
+        this.setState({ ...this.state.form, isOpen: false });
     }
     render() {
         return (
