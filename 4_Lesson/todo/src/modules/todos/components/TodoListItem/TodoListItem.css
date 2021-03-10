@@ -1,0 +1,35 @@
+.items-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+li {
+    border: 0px solid #989898cf;
+    border-radius: 3px;
+    padding: 15px;
+    margin: 15px 0;
+    box-shadow: 0 0 4px 0px rgb(0 0 0 / 31%), 0 3px 4px -2px rgb(10 10 10 / 25%);
+    transition: 0.1s;
+    cursor: pointer;
+}
+li:hover {
+    transition: 0.1s;
+    transform: scale(1.02);
+}
+.completed:hover{
+    transition: 0.1s;
+    transform: scale(1);
+}
+label{
+    display: flex;
+    cursor: pointer;
+}
+.completed {
+    background: green;
+    text-decoration: line-through;
+}
+input[type="checkbox"] {
+    transform: scale(1.8);
+    margin-right: 15px;
+}

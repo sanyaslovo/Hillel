@@ -1,44 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './App.css';
-import List from '../src/components/List/List'
+import Todos from './modules/todos/components/Todos/Todos'
 
-class App extends Component {
-  state = {
-      todo: [
-          {
-              id: "14",
-              title: "Costa Rican Colon North Carolina parsing",
-              completed: true
-          },
-          {
-              id: "16",
-              title: "Industrial indexing context-sensitive",
-              completed: false
-          },
-          {
-              id: "18",
-              title: "North Korean Won",
-              completed: false
-          },
-          {
-              id: "19",
-              title: "Wooden Indiana",
-              completed: true
-          },
-          {
-              id: "20",
-              title: "Assistant actuating implement",
-              completed: false
-          }
-      ]
-  };
-  render() {
+function App() {
     return (
         <div className="App">
-            <List list={this.state.todo} />
+            <Todos/>
         </div>
     );
-  }
 }
 
 export default App;

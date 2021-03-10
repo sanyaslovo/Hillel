@@ -1,22 +1,19 @@
-import React, { useState } from 'react';
+import React  from 'react';
+import TodoListItem from "../TodoListItem/TodoListItem";
 
-import './TodoList.css';
-
-function ListItem({ todos, onToggle, onDelete }) {
+function TodoList({ todos, onToggle, onDelete }) {
     return (
         <ul className="List">
-            <li id={todo.id} className={todo.completed ? 'completed' : ''}>
-                <label>
-                    <input
-                       type="checkbox"
-                       defaultChecked={completed}
-                       onChange={toggleChange}
-                    />
-                    {todo.title}
-                </label>
-            </li>
+            {todos.map((todo) => (
+                <TodoListItem
+                    key={todo.id}
+                    todo={todo}
+                    onToggle={onToggle}
+                    onDelete={onDelete}
+                />
+            ))}
         </ul>
     );
 }
 
-export default ListItem;
+export default TodoList;

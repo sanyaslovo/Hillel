@@ -1,0 +1,33 @@
+form{
+    background: #ffffffa1;
+    border: 1px solid #ffffff2e;
+    border-radius: 10px;
+    padding: 20px 20px;
+    margin: 10px 0 0 0;
+    list-style-type: none;
+    box-shadow: 0 0 50px 8px rgb(10 10 10 / 28%), 0 3px 4px -2px rgb(10 10 10 / 25%);
+    cursor: default;
+    width: 50vw;
+}
+input[type="text"] {
+    border: 1px solid #ffffff2e;
+    outline: none;
+    height: 30px;
+    width: 90%;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding: 5px 0 5px 10px;
+    font-size: 16px;
+}
+button {
+    background-color: #58AE43;
+    border: 0;
+    outline: none;
+    height: 41px;
+    width: calc(10% - 22px);
+    border-radius: 5px;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
