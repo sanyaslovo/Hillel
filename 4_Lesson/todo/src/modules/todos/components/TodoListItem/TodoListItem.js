@@ -15,11 +15,6 @@ function TodoListItem({ todo, onToggle, onDelete }) {
             onClick={onTodoClick}
         >
             <label>
-                {/*<input*/}
-                {/*    type="checkbox"*/}
-                {/*    defaultChecked={onDelete}*/}
-                {/*    onChange={onTodoClick}*/}
-                {/*/>*/}
                 <span className="items-between">
                     <span>{todo.title}</span>
                     <span onClick={(e) => onDeleteBtnClick(e)}>X</span>
