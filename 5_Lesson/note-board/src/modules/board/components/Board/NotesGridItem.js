@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Card } from "react-bootstrap";
+import { Card } from 'react-bootstrap';
 
-function NotesGridItem({ note, bg, edit, del }) {
+function NotesGridItem({ note, editNote, deleteNote }) {
     const [ description, setDescription ] = useState(note.description)
     const onBlur = (e) => {
         if (e.currentTarget === e.target) {
@@ -9,22 +9,22 @@ function NotesGridItem({ note, bg, edit, del }) {
                 id: note.id,
                 description: description,
             }
-            edit(modifiedNote)
+            editNote(modifiedNote)
         }
     }
     const onChange = (e) => {
         setDescription(e.target.value)
     }
     return (
-        <Card bg={bg} className="mb-2" >
+        <Card className="mb-2 bg-dark"  >
             <Card.Header>
-                <div className="closeBtn" onClick={() => del(note.id)}>×</div>
+                <div className="closeBtn" onClick={() => deleteNote(note.id)}>×</div>
             </Card.Header>
             <Card.Body>
                 <textarea
                     name="description"
                     id={note.id}
-                    className={bg === 'light' ? 'text-dark text-center' : 'text-white text-center'}
+                    className={'text-white text-center'}
                     defaultValue={note.description}
                     onBlur={(e) => onBlur(e)}
                     onChange={(e) => onChange(e)}

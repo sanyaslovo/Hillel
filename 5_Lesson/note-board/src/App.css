@@ -58,13 +58,13 @@
   transform: scale(1.4);
   font-size: 21px;
   font-weight: 100;
-  color: #000;
+  color: #fff;
   opacity: 0.4;
   cursor: pointer;
 }
 .card-header {
   height: 30px;
-  padding: 0 10px 0 0 !important;
+  padding: 0 10px 36px 0 !important;
 }
 .container-fluid {
   background-image: url(https://source.unsplash.com/random/1920x1080);
