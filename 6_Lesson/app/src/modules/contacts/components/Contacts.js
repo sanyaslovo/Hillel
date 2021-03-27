@@ -2,6 +2,7 @@ import React from 'react';
 import useContacts from '../hooks/useContacts';
 import ContactsTable from './ContactsTable';
 import ContactsAddForm from './AddContact';
+import SetTheme from '../../theme/SetTheme'
 
 export default function Contacts() {
     const {
@@ -25,6 +26,7 @@ export default function Contacts() {
                 isOpened={modal}
                 toggleModal={toggleModal}>
             </ContactsAddForm>
+            <SetTheme />
         </>
     )
 }

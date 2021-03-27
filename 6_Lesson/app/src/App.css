@@ -96,3 +96,8 @@ button {
   background: green;
   box-shadow: 1px 1px 10px green;
 }
+.toggle_theme {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+}
