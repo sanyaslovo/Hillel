@@ -1,7 +1,7 @@
 export default function ContactsRow({ item, onDelete }) {
-    function handleDelete(e) {
+    const handleDelete = (e) => {
         e.stopPropagation();
-        onDelete(item.id)
+        onDelete(item.id);
     }
     return (
         <tr>

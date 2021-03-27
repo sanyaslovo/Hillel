@@ -10,15 +10,15 @@ export default function useContacts() {
         Axios.get(URL).then(({ data }) => setList(data));
     }, []);
 
-    function toggleModal() {
-        setModal(!modal)
+    const toggleModal = () => {
+        setModal(!modal);
     }
 
-    function deleteContact(id) {
+    const deleteContact = (id) => {
         Axios.delete(URL + id);
         setList(list.filter((item) => item.id !== id));
     }
-    function createContact(contact) {
+    const createContact = (contact) => {
         Axios.post(URL, contact, {
             headers: {'Content-Type': 'application/json'}
         }).then(({ data }) => setList(() => [...list, contact]));

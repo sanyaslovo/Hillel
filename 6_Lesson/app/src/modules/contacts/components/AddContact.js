@@ -5,19 +5,19 @@ export default function AddContact({ onSave, isOpened, toggleModal}) {
         name: '',
         surname: '',
         phone: ''
-    })
+    });
 
-    function onFormSubmit(e) {
+    const onFormSubmit = (e) => {
         e.preventDefault();
         onSave(contact);
         setContact({name: '', surname: '', phone: ''});
     }
 
-    function onInputChange(e) {
-        setContact({...contact, [e.target.name]: e.target.value })
+    const onInputChange = (e) => {
+        setContact({...contact, [e.target.name]: e.target.value });
     }
 
-    function onCancelClick(e) {
+    const onCancelClick = (e) => {
         e.preventDefault();
         setContact({name: '', surname: '', phone: ''});
         toggleModal();

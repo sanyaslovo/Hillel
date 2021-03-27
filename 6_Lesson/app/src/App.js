@@ -1,16 +1,25 @@
 import { useState } from 'react';
-import { themeContext } from './contexts/themeContext';
+import { ThemeProvider } from 'styled-components';
 import Contacts from './modules/contacts/components/Contacts';
-import './App.css';
+import { lightTheme, darkTheme } from './modules/styles/theme';
+import { GlobalStyles } from './modules/styles/global';
 
-function App() {
-  const [ theme, setTheme ] = useState('lite');
-  console.log(theme)
+export default function App() {
+  const [ theme, setTheme ] = useState('light'); //Сделал по дефолту тему лайт, но если нужно то можно записывать выбранное юзером значение в локал сторейдж. Вроде по ТЗ не было)
+  const toggleTheme = () => {
+    if (theme === 'light') {
+        setTheme('dark');
+    } else {
+        setTheme('light');
+    }
+  }
   return (
-      <themeContext.Provider value={setTheme}>
-        <Contacts />
-      </themeContext.Provider>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+          <>
+              <GlobalStyles />
+              <button onClick={toggleTheme} className='toggle_theme'>Toggle theme</button>
+              <Contacts />
+          </>
+      </ThemeProvider>
   );
 }
-
-export default App;
