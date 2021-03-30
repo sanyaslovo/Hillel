@@ -5,15 +5,8 @@ import { URL } from '../constants';
 export default function useContacts() {
     const [ list, setList ] = useState([]);
     const [ modal, setModal ] = useState(false);
-
-    useEffect(() => {
-        Axios.get(URL).then(({ data }) => setList(data));
-    }, []);
-
-    const toggleModal = () => {
-        setModal(!modal);
-    }
-
+    useEffect(() => Axios.get(URL).then(({ data }) => setList(data)), []);
+    const toggleModal = () => setModal(!modal);
     const deleteContact = (id) => {
         Axios.delete(URL + id);
         setList(list.filter((item) => item.id !== id));
