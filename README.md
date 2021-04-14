@@ -1,2 +1,0 @@
-# Hillel
-Hillel React Course
