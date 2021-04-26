@@ -1,3 +1,5 @@
+import { ACTION_ADD_TODO, ACTION_TOGGLE_TODO, ACTION_DELETE_TODO } from '../actions/actions';
+
 const INITIAL_STATE = {
     list: [
         {id: 1, title: 'First todo', completed: false},
@@ -7,7 +9,7 @@ const INITIAL_STATE = {
 export default function reducer( state = INITIAL_STATE, {type, payload}) {
     console.log(state)
     switch (type){
-        case 'add':
+        case ACTION_ADD_TODO:
             return {
                 ...state,
                 list: [
@@ -19,12 +21,12 @@ export default function reducer( state = INITIAL_STATE, {type, payload}) {
                     }
                 ]
             }
-        case 'toggle':
+        case ACTION_TOGGLE_TODO:
             return {
                 ...state,
                 list: state.list.map(todo => todo.id === payload ? {...todo, completed: !todo.completed} : todo)
             }
-        case 'delete':
+        case ACTION_DELETE_TODO:
             return {
                 ...state,
                 list: state.list.filter(todo => todo.id !== payload)
