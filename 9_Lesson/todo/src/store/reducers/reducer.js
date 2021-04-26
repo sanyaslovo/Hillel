@@ -7,7 +7,6 @@ const INITIAL_STATE = {
     ],
 }
 export default function reducer( state = INITIAL_STATE, {type, payload}) {
-    console.log(state)
     switch (type){
         case ACTION_ADD_TODO:
             return {
