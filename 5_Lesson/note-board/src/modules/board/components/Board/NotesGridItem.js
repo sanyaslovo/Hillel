@@ -16,7 +16,7 @@ function NotesGridItem({ note, editNote, deleteNote }) {
         setDescription(e.target.value)
     }
     return (
-        <Card className="mb-2 bg-dark"  >
+        <Card className="mb-2 bg-dark">
             <Card.Header>
                 <div className="closeBtn" onClick={() => deleteNote(note.id)}>×</div>
             </Card.Header>

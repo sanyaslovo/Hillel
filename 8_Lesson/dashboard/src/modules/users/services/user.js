@@ -1,4 +1,4 @@
-import api from "../../../api";
+import api from '../../../api';
 import { USERS_API_URI } from '../constants';
 
 export function getUser(id) {

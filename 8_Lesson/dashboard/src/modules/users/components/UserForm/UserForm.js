@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
-import { useRouteMatch } from 'react-router-dom';
-import { useUser } from "../../hooks/useUser";
-import { useHistory } from 'react-router-dom';
+import { useRouteMatch, useHistory } from 'react-router-dom';
+import { useUser } from '../../hooks/useUser';
 import { useUsers } from '../../hooks/useUsers';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Container from "@material-ui/core/Container";
-import { LinearProgress } from "@material-ui/core";
+import { Container, TextField, Button, LinearProgress } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,17 +37,18 @@ export default function Form() {
     const isAdd = () => {
         return Object.keys(user).length === 1 ? false : true
     }
+    const onInputChange = (e) => {
+        isAdd()
+        ? (setCurrentUser({ ...currentUser, [e.target.name]: e.target.value }))
+        : (setCurrentUser({ ...currentUser, id: user[0].id, [e.target.name]: e.target.value }))
+    };
     const submitForm = (e) => {
+        if(!Object.keys(currentUser).length) return
         e.preventDefault();
-        isAdd() ? addUser(currentUser) : editUser({...user[0]});
+        isAdd() ? (addUser(currentUser)) : (editUser(currentUser))
         setTimeout(() => {history.push('/users')}, 1000);
     };
-    const onInputChange = (e) => {
-        console.log(currentUser)
-        setCurrentUser({ ...user[0], [e.target.name]: e.target.value });
-    };
     if (!Object.keys(user).length) return <LinearProgress />
-    console.log()
     return (
         <Container maxWidth="sm">
             <form className={classes.form} noValidate autoComplete="off">

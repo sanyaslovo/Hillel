@@ -1,9 +1,8 @@
 import React from 'react';
 import useAlbums from '../hooks/useAlbums';
 import AlbumsList from './AlbumsList';
-import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
-import {LinearProgress} from "@material-ui/core";
+import { Typography, LinearProgress } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     title: {

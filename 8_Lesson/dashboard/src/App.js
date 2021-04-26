@@ -5,9 +5,9 @@ import {
     Route,
     Switch,
 } from 'react-router-dom';
-import Albums from './modules/albums/components/Albums';
 import Header from './modules/common/components/Header';
 import NotFound from './modules/common/components/NotFound';
+import Albums from './modules/albums/components/Albums';
 import Dashboard from './modules/dashboard/components/Dashboard';
 import Users from './modules/users/components/Users';
 import Form from "./modules/users/components/UserForm/UserForm";

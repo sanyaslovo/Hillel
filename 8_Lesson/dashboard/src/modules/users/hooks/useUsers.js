@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { USERS_API_URI } from '../constants';
 
@@ -28,10 +28,7 @@ export function useUsers() {
             email: data.email,
         }, {
             headers: {'Content-Type': 'application/json'}
-        }).then(({data}) => {
-            console.log(data)
-            setUsers(users.map((item) => item.id === data.id ? data : item))
-        });
+        }).then(({data}) => setUsers(users.map((item) => item.id === data.id ? data : item)));
     };
     return {
         users,

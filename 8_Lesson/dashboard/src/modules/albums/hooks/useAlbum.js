@@ -6,7 +6,7 @@ export function useAlbum(albumId) {
 
     useEffect(() => {
         getAlbumPhotos(albumId).then(({ data }) => setPhotos(data));
-    }, []);
+    }, [albumId]);
 
     return { photos };
 }

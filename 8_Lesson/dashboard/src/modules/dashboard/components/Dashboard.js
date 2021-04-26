@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Button from '@material-ui/core/Button';
-import Typography from "@material-ui/core/Typography";
+import { Container, Typography, ButtonGroup, Button } from '@material-ui/core';
 import {makeStyles} from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
     title: {
