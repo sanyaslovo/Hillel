@@ -1,12 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { deleteUser, setUsers } from '../../../store/actions/actions'
+import { deleteUser } from '../../../store/actions/actions'
 import UsersList from './UsersList';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import {LinearProgress} from "@material-ui/core";
-import Axios from "axios";
-import { USERS_API_URI } from "../constants";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -14,13 +12,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Users({ users = [], deleteUser, setUsers }) {
+function Users({ users = [], deleteUser }) {
     const classes = useStyles();
-
-    useEffect (() => {
-        Axios.get(USERS_API_URI).then(({data}) => setUsers(data));
-    }, [setUsers]);
-
     if (!Object.keys(users).length) return <LinearProgress />
     return (
         <>
@@ -38,8 +31,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    deleteUser,
-    setUsers
+    deleteUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

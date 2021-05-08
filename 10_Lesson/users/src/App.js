@@ -9,7 +9,9 @@ import Header from './modules/common/components/Header';
 import NotFound from './modules/common/components/NotFound';
 import Users from './modules/users/components/Users';
 import Form from "./modules/users/components/UserForm";
-
+import store from "./store";
+import {fetchUsers} from "./store/actions/actions";
+store.dispatch(fetchUsers());
 function App() {
     return (
         <Router>

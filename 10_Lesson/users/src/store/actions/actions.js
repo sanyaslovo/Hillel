@@ -1,13 +1,47 @@
+import Axios from "axios";
+import { USERS_API_URI } from "../../modules/users/constants";
+
 export const ACTION_SAVE_USER = 'ACTION_SAVE_USER';
 export const ACTION_DELETE_USER = 'ACTION_DELETE_USER';
-export const ACTION_SET_USER = 'ACTION_SET_USER';
+export const ACTION_SET_USERS = 'ACTION_SET_USERS';
 
-export function saveUser(payload) {
-    return { type: ACTION_SAVE_USER, payload };
-}
-export function deleteUser(payload) {
-    return { type: ACTION_DELETE_USER, payload };
-}
-export function setUsers(payload) {
-    return { type: ACTION_SET_USER, payload };
-}
+export const fetchUsers = () => {
+    return (dispatch) => {
+        Axios.get(USERS_API_URI).then(({data}) => {
+            dispatch({
+                type: ACTION_SET_USERS,
+                payload: data
+            })
+        });
+    }
+};
+
+export const deleteUser = (id) => {
+    return (dispatch) => {
+        Axios.delete(USERS_API_URI + id);
+        dispatch({
+            type: ACTION_DELETE_USER,
+            payload: id
+        });
+    }
+};
+
+export const saveUser = (user) => {
+    return (dispatch) => {
+        if(user.id) Axios.put(USERS_API_URI + user.id, user ).then(({ data }) => {
+            dispatch({
+                type: ACTION_SAVE_USER,
+                payload: data
+            })
+        })
+        else Axios.post(USERS_API_URI, user ).then(({data}) => {
+            dispatch({
+                type: ACTION_SAVE_USER,
+                payload: data
+            })
+        });
+
+    }
+};
+
+export const setUsers = (payload) => ({ type: ACTION_SET_USERS, payload });

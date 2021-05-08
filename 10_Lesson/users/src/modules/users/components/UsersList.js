@@ -27,8 +27,8 @@ function UsersList({ users, deleteUser }) {
                     <TableHead>
                         <TableRow>
                             <TableCell>Name</TableCell>
+                            <TableCell>Surname</TableCell>
                             <TableCell>Phone</TableCell>
-                            <TableCell>Email</TableCell>
                             <TableCell align="right">Actions</TableCell>
                         </TableRow>
                     </TableHead>

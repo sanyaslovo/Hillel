@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { saveUser } from '../../../store/actions/actions'
-import { useRouteMatch, useHistory } from 'react-router-dom';
+import { useHistory, useParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, TextField, Button, LinearProgress } from '@material-ui/core';
+import {Container, TextField, Button, LinearProgress} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,21 +27,25 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Form({ saveUser }) {
+function Form({ users, saveUser }) {
     const classes = useStyles();
     const history = useHistory();
-    const [ userObj, setUserObj ] = useState({
-        id: '',
+    const { id } = useParams();
+    const userEditingData = users.find(user => user.id === id);
+    const [ userData, setUserData ] = useState(userEditingData || {
         name: '',
+        surname: '',
         phone: '',
-        email: '',
-    })
-console.log(saveUser)
+    });
     const onInputChange = (e) => {
+        setUserData({ ...userData, [e.target.name]: e.target.value });
     };
     const submitForm = (e) => {
         e.preventDefault();
+        saveUser(userData);
+        history.push('/users');
     };
+    if (!Object.keys(users).length) return <LinearProgress />;
     return (
         <Container maxWidth="sm">
             <form className={classes.form} noValidate autoComplete="off">
@@ -51,7 +55,17 @@ console.log(saveUser)
                     label="Name"
                     name="name"
                     variant="outlined"
-                    defaultValue={userObj.name}
+                    defaultValue={userData.name}
+                    onChange={onInputChange}
+                />
+                <TextField
+                    className={classes.root}
+                    fullWidth
+                    label="Surname"
+                    name="surname"
+                    variant="outlined"
+                    type="tel"
+                    defaultValue={userData.surname}
                     onChange={onInputChange}
                 />
                 <TextField
@@ -61,17 +75,7 @@ console.log(saveUser)
                     name="phone"
                     variant="outlined"
                     type="tel"
-                    defaultValue={userObj.phone}
-                    onChange={onInputChange}
-                />
-                <TextField
-                    className={classes.root}
-                    fullWidth
-                    label="Email"
-                    name="email"
-                    variant="outlined"
-                    type="email"
-                    defaultValue={userObj.email}
+                    defaultValue={userData.phone}
                     onChange={onInputChange}
                 />
                 <div className={classes.between}>
@@ -89,4 +93,9 @@ console.log(saveUser)
 const mapStateToProps = (state) => {
     return { users: state.users };
 }
-export default connect(mapStateToProps, { saveUser })(Form)
+
+const mapDispatchToProps = {
+    saveUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form)

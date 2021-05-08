@@ -12,8 +12,8 @@ function UserListItem({ item, deleteUser }) {
     return (
         <TableRow hover style={{ cursor: 'pointer'}} onClick={() => history.push('/users/' + item.id)}>
             <TableCell component="th" scope="row">{item.name}</TableCell>
+            <TableCell>{item.surname}</TableCell>
             <TableCell>{item.phone}</TableCell>
-            <TableCell>{item.email}</TableCell>
             <TableCell align="right">
                 <IconButton aria-label="delete" onClick={(e) => deleteUserA(e)}>
                     <DeleteIcon />
