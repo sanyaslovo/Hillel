@@ -1,13 +1,13 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { TableCell, TableRow, IconButton } from "@material-ui/core";
+import { TableCell, TableRow, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 function UserListItem({ item, deleteUser }) {
     const history = useHistory();
     function deleteUserA(e) {
         e.stopPropagation();
-        deleteUser(item.id)
+        deleteUser(item.id);
     }
     return (
         <TableRow hover style={{ cursor: 'pointer'}} onClick={() => history.push('/users/' + item.id)}>

@@ -1,7 +1,8 @@
 import Axios from "axios";
 import { USERS_API_URI } from "../../modules/users/constants";
 
-export const ACTION_SAVE_USER = 'ACTION_SAVE_USER';
+export const ACTION_NEW_USER = 'ACTION_NEW_USER';
+export const ACTION_EDIT_USER = 'ACTION_EDIT_USER';
 export const ACTION_DELETE_USER = 'ACTION_DELETE_USER';
 export const ACTION_SET_USERS = 'ACTION_SET_USERS';
 
@@ -28,19 +29,21 @@ export const deleteUser = (id) => {
 
 export const saveUser = (user) => {
     return (dispatch) => {
-        if(user.id) Axios.put(USERS_API_URI + user.id, user ).then(({ data }) => {
-            dispatch({
-                type: ACTION_SAVE_USER,
-                payload: data
+        if(user.id) {
+            Axios.put(USERS_API_URI + user.id, user ).then(({ data }) => {
+                dispatch({
+                    type: ACTION_EDIT_USER,
+                    payload: data
+                });
             })
-        })
-        else Axios.post(USERS_API_URI, user ).then(({data}) => {
-            dispatch({
-                type: ACTION_SAVE_USER,
-                payload: data
-            })
-        });
-
+        } else {
+            Axios.post(USERS_API_URI, user ).then(({data}) => {
+                dispatch({
+                    type: ACTION_NEW_USER,
+                    payload: data
+                });
+            });
+        }
     }
 };
 
